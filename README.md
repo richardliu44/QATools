@@ -1,2 +1,2 @@
 # QATools
-automation tools
+These tools are very useful for automation testing.
