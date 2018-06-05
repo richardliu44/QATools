@@ -120,7 +120,7 @@ EOF
 		echo " "
 		;;
 	4)	
-	    echo "It is going to downlaod the Upgrade AVP. Before that, you need to input the Avamar Upgrade AVP version and build number. For example, 18.0.0.88, we define 18.0.0 as VERSION number and 88 as BUILD number."
+	    echo "It is going to downlaod the Upgrade AVP. Before that, you need to input the Avamar Upgrade AVP version and build number. For example, 7.5.1.101, we define 7.5.1 as VERSION number and 101 as BUILD number."
 		read -p "Please input the VERSION number you want to upgrade: (eg.18.1.0; press ENTER for default version:18.1.0):" verison
 		verison=${verison:-18.1.0}
 		read -p "Please input the BUILD number you want to upgrade: (eg. 88)" build
