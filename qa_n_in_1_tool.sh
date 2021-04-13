@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=/usr/local/avamar/var/mc/server_data/prefs/mcserver.xml
+FILE=/usr/local/***/var/mc/server_data/prefs/***.xml
 AV_PASSWORD=YOUR_PASSWORD
 AV_IP=`ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk -F " " '{print $2}' | awk -F : '{print $2}'`
 
@@ -28,7 +28,7 @@ echo "MAIN - MENU"
 tput sgr0
 
 tput cup 7 15
-echo "1. Enable to add vCenter without certificate(ignore_vc_cert in mcserver.xml)"
+echo "1. Enable to add vCenter without certificate(ignore_vc_cert in ***.xml)"
 
 tput cup 8 15
 echo "2. Enable replication"
@@ -37,10 +37,10 @@ tput cup 9 15
 echo "3. Enable migration"
 
 tput cup 10 15
-echo "4. Download Avamar Upgrade AVP"
+echo "4. Download **** Upgrade AVP"
 
 tput cup 11 15
-echo "5. Restart MCS service & record stop/start time."
+echo "5. Restart *** service & record stop/start time."
 
 tput cup 12 15
 echo "6. Exit"
@@ -52,7 +52,7 @@ read -p "Please enter your choice: [1-6]" choice
 
 case $choice in
     1)
-	    echo "It is going to change "ignore_vc_cert" value from false to true then restart MCS service..."
+	    echo "It is going to change "ignore_vc_cert" value from false to true then restart *** service..."
 		dpnctl stop mcs
 		line=`cat -n $FILE | grep ignore_vc_cert | awk -F " " '{print $1}'`
         sed -i "$line s/false/true/g" $FILE
@@ -60,7 +60,7 @@ case $choice in
 		dpnctl start mcs
 		;;
 	2)  
-	    echo "It is going to change "allow_dest_replica_management" value from false to true then restart MCS service..."
+	    echo "It is going to change "allow_dest_replica_management" value from false to true then restart *** service..."
 		dpnctl stop mcs
         line=`cat -n $FILE | grep allow_dest_replica_management | awk -F " " '{print $1}'`
 		sed -i "$line s/false/true/g" $FILE
@@ -96,7 +96,7 @@ case $choice in
 		av_server_version=`avmgr --version | grep version | grep -v OS | awk -F : '{print $2}' | awk -F - '{print $1}' | sed s/[[:space:]]//g`
         av_server_build=`avmgr --version | grep version | grep -v OS | awk -F : '{print $2}' | awk -F - '{print $2}'`
 		
-        echo "Avamar Server verison is $av_server_version-$av_server_build"
+        echo "**** Server verison is $av_server_version-$av_server_build"
 		#Stop firewall
 		/usr/bin/expect <<EOF
         spawn su - root -c "rcSuSEfirewall2 stop"
@@ -120,7 +120,7 @@ EOF
 		echo " "
 		;;
 	4)	
-	    echo "It is going to downlaod the Upgrade AVP. Before that, you need to input the Avamar Upgrade AVP version and build number. For example, 7.5.1.101, we define 7.5.1 as VERSION number and 101 as BUILD number."
+	    echo "It is going to downlaod the Upgrade AVP. Before that, you need to input the *** Upgrade AVP version and build number. For example, 7.5.1.101, we define 7.5.1 as VERSION number and 101 as BUILD number."
 		read -p "Please input the VERSION number you want to upgrade: (eg.18.1.0; press ENTER for default version:18.1.0):" verison
 		verison=${verison:-18.1.0}
 		read -p "Please input the BUILD number you want to upgrade: (eg. 88)" build
@@ -136,12 +136,12 @@ EOF
 		[[ `hostname -f` =~ "BUILD_SERVER_KEYWORD_1" ]] &&
 		/usr/bin/expect		<<EOF
 		set timeout 600
-		spawn su - root -c "wget http://YOUR_BUILD_SERVER_1/builds/v$verison.$build/PACKAGES/AvamarUpgrade-$verison-$build.avp -P /data01/avamar/repo/packages/"
+		spawn su - root -c "wget http://YOUR_BUILD_SERVER_1/builds/v$verison.$build/PACKAGES/****Upgrade-$verison-$build.avp -P /****/****/repo/packages/"
 		expect "Password:"
 		send "$AV_PASSWORD\r"
 		expect {
-		"*404" { send_user "Failed to download AvamarUpgrade-$verison-$build.avp, please check the log above."}
-		"*saved" { send_user "Now, please log in to https://$AV_IP/avi/avigui.html and install AvamarUpgrade-$verison-$build.avp"}
+		"*404" { send_user "Failed to download ****Upgrade-$verison-$build.avp, please check the log above."}
+		"*saved" { send_user "Now, please log in to https://$AV_IP/avi/avigui.html and install ****Upgrade-$verison-$build.avp"}
 		}
 		expect eof
 EOF
@@ -150,12 +150,12 @@ EOF
 		[[ `hostname -f` =~ "BUILD_SERVER_KEYWORD_2" ]] &&
 		/usr/bin/expect		<<EOF
 		set timeout 600
-		spawn su - root -c "wget http://YOUR_BUILD_SERVER_2/builds/v$verison.$build/PACKAGES/AvamarUpgrade-$verison-$build.avp -P /data01/avamar/repo/packages/"
+		spawn su - root -c "wget http://YOUR_BUILD_SERVER_2/builds/v$verison.$build/PACKAGES/****Upgrade-$verison-$build.avp -P /****/repo/packages/"
 		expect "Password:"
 		send "$AV_PASSWORD\r"
 		expect {
-		"*404" { send_user "Failed to download AvamarUpgrade-$verison-$build.avp, please check the log above."}
-		"*saved" { send_user "Now, please log in to https://$AV_IP/avi/avigui.html and install AvamarUpgrade-$verison-$build.avp"}
+		"*404" { send_user "Failed to download ****Upgrade-$verison-$build.avp, please check the log above."}
+		"*saved" { send_user "Now, please log in to https://$AV_IP/avi/avigui.html and install ****Upgrade-$verison-$build.avp"}
 		}
 		expect eof
 EOF
