@@ -6,7 +6,7 @@ count = 101
 names = ['a','b','c','d','e']
 notes = ['1','2','3','4','5']
 phone_start_4_digit = ['130','131','132','133','134','135','136']
-writer - pd.ExcelWriter('file_name.xlsx')
+writer = pd.ExcelWriter('file_name.xlsx')
 
 def create_phone_number():
     str_start = random.choice(phone_start_4_digit)
