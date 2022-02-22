@@ -16,8 +16,6 @@
 
 # 2022/02/22 use branch dev1 to commit, then push to dev1, then merge to master again.
 
-# 2022/02/22 use branch dev1 to commit, then push to dev1, then merge to master again.
-
 
 # test.
 # ets2.
