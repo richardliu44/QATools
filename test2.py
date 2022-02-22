@@ -12,4 +12,6 @@
 
 # 2022/02/21 use branch dev1 to commit.
 
-# 2022/02/22 use branch dev1 to commit, then push to dev1, then merge to master.
+# 2022/02/22 use branch dev1 to commit, then push to dev1, then merge to master.NO
+
+# 2022/02/22 use branch dev to commit,then merge to dev1, then merge to master.
